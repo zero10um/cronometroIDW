@@ -1,0 +1,63 @@
+/* dark-theme.css */
+
+/* Estilos globais para o tema escuro */
+body {
+    background-color: #222;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Centralize verticalmente na tela */
+  }
+  
+  /* Estilos para contêineres de formulários */
+  .container {
+    background-color: rgba(0, 0, 0, 0.7); /* Fundo transparente escuro */
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+  }
+  
+  /* Estilos para inputs de texto e botões */
+  input[type="text"],
+  input[type="password"],
+  button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  /* Estilos específicos para botões */
+  button {
+    background-color: #007BFF;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+
+  /* Adicione estas regras de estilo para centralizar o cronômetro */
+#cronometro {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  /* Estilos para os botões no cronômetro */
+#botoes-cronometro button {
+    width: 150px; /* Largura maior */
+    height: 50px; /* Altura maior */
+    border-radius: 10px; /* Borda arredondada */
+    font-size: 18px; /* Tamanho da fonte maior */
+    margin: 10px 0; /* Espaçamento entre os botões */
+  }

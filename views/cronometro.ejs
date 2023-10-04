@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/dark-theme.css">
+    <link rel="stylesheet" href="/styles.css">
+
+    <title>Cronômetro</title>
+    
+</head>
+<body>
+    <div class="container">
+        <h1>Cronômetro IDW</h1> 
+        <div id="cronometro">
+            <span id="tempo">00:00:00</span>
+            <div id="botoes-cronometro">
+                <button id="iniciar">Iniciar</button>
+                <button id="parar">Parar</button>
+                <button id="voltar">Volta</button>
+                <button id="reiniciar">Reiniciar</button>
+                <button id="zerar-lista">Zerar Lista</button>
+                <button id="deslogar">Deslogar</button>
+            </div>
+        </div>
+
+        <ul id="historico"></ul> 
+    </div>
+
+  <script>
+const tempoDisplay = document.getElementById('tempo');
+const iniciarButton = document.getElementById('iniciar');
+const pararButton = document.getElementById('parar');
+const voltarButton = document.getElementById('voltar');
+const historicoList = document.getElementById('historico'); 
+let cronometro;
+let segundos = 0;
+let minutos = 0;
+let horas = 0;
+const historicoVoltas = []; //array do historicos das voltas
+
+function atualizarCronometro() {
+  segundos++;
+  if (segundos === 60) {
+    segundos = 0;
+    minutos++;
+    if (minutos === 60) {
+      minutos = 0;
+      horas++;
+    }
+  }
+  tempoDisplay.textContent = `${horas}:${minutos}:${segundos}`;
+}
+
+iniciarButton.addEventListener('click', () => {
+  cronometro = setInterval(atualizarCronometro, 1000);
+});
+
+pararButton.addEventListener('click', () => {
+  clearInterval(cronometro);
+});
+
+voltarButton.addEventListener('click', () => {
+ //salva o atual no historic
+  const voltaAtual = `${horas}:${minutos}:${segundos}`;
+  historicoVoltas.push(voltaAtual);
+
+  //exibe a volta
+  const novaVoltaItem = document.createElement('li');
+  novaVoltaItem.textContent = voltaAtual;
+  historicoList.appendChild(novaVoltaItem);
+});
+document.getElementById('reiniciar').addEventListener('click', () => {
+  clearInterval(cronometro);
+  segundos = 0;
+  minutos = 0;
+  horas = 0;
+  tempoDisplay.textContent = '00:00:00';
+});
+document.getElementById('zerar-lista').addEventListener('click', () => {
+  historicoVoltas.length = 0; //zera
+  historicoList.innerHTML = ''; //limpa lista
+});
+document.getElementById('deslogar').addEventListener('click', () => {
+  window.location.href = '/login'; // vai pro login
+});
+
+  </script>
+</body>
+</html>
